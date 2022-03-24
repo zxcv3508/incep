@@ -1,0 +1,19 @@
+FROM debian:buster
+
+RUN apt-get update && apt-get install -y \
+	mariadb-server \
+	php-mbstring
+
+WORKDIR /
+
+COPY conf tmp
+
+COPY tools tools
+
+
+RUN service mysql start;mysql -u root < /tools/mysqlset.sql;mv /tmp/my.cnf /etc/mysql/my.cnf;service mysql restart 
+# RUN mysql -u root < tmp/mysqlset.sql
+
+
+ENTRYPOINT ["sh","/tools/entrypoint.sh"]
+
