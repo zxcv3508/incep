@@ -39,12 +39,12 @@ volumes:
   DB:
     driver : local
     driver_opts:
-#      type: none
-      device: "/home/login/data/DB"
+      type: none
+      device: "/home/hyopark/data/DB"
       o : "bind"
   WP:
     driver : local
     driver_opts:
-#      type: none
-      device: "/home/login/data/DB"
+      type: none
+      device: "/home/hyopark/data/WP"
       o : "bind"
