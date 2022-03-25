@@ -10,8 +10,9 @@ COPY conf tmp
 
 COPY tools tools
 
-
-RUN service mysql start;mysql -u root < /tools/mysqlset.sql;mv /tmp/my.cnf /etc/mysql/my.cnf;service mysql restart 
+RUN service mysql start && \
+	mysql < /tools/mysqlset.sql && \
+	mv /tmp/my.cnf /etc/mysql/my.cnf;service mysql restart
 # RUN mysql -u root < tmp/mysqlset.sql
 
 
