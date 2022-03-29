@@ -1,0 +1,57 @@
+version: '3.0'
+
+networks:
+  nw:
+    driver: bridge
+services:
+  nginx:
+    restart: always
+    image: nginx
+    container_name: nginx
+    build: ./requirements/nginx
+    ports:
+      - "443:443"
+      - "80:80"
+    networks:
+      - nw
+    depends_on:
+      - wordpress
+    volumes:
+      - WP:/var/www/html
+  wordpress:
+    restart: always
+    image: wordpress
+    env_file:
+      - .env
+    container_name: wordpress
+    build: ./requirements/wp-php
+    networks:
+      - nw
+    depends_on:
+      - mariadb
+    volumes:
+      - WP:/var/www/html
+  mariadb:
+    restart: always
+    image: mariadb
+    env_file:
+      - .env
+    container_name: mariadb
+    build: ./requirements/mariadb
+    networks:
+      - nw
+    volumes:
+      - DB:/var/lib/mysql
+volumes:
+  DB:
+    # driver : local
+    # driver_opts:
+    #   type: none
+    #   device: "/Users/hyopark/b2c/inception/srcs/DB"
+    #   o : "bind"
+  WP:
+    # driver : local
+    # driver_opts:
+    #   type: none
+    #   device: "/Users/hyopark/b2c/inception/srcs/WP"
+    #   o : "bind"
