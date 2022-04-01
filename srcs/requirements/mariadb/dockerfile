@@ -10,11 +10,6 @@ COPY conf tmp
 
 COPY tools tools
 
-RUN service mysql start && \
-	mysql < /tools/mysqlset.sql && \
-	mv /tmp/my.cnf /etc/mysql/my.cnf;service mysql restart
-# RUN mysql -u root < tmp/mysqlset.sql
-
+RUN service mysql start
 
 ENTRYPOINT ["sh","/tools/entrypoint.sh"]
-
