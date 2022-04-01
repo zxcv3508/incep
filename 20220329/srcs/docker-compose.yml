@@ -43,14 +43,14 @@ services:
       - DB:/var/lib/mysql
 volumes:
   DB:
-    # driver : local
-    # driver_opts:
-    #   type: none
-    #   device: "/home/hyopark/data/DB"
-    #   o : "bind"
+    driver : local
+    driver_opts:
+      type: none
+      device: "/home/hyopark/data/DB"
+      o : "bind"
   WP:
-    # driver : local
-    # driver_opts:
-    #   type: none
-    #   device: "/home/hyopark/data/WP"
-    #   o : "bind"
+    driver : local
+    driver_opts:
+      type: none
+      device: "/home/hyopark/data/WP"
+      o : "bind"
