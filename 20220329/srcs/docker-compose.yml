@@ -11,7 +11,6 @@ services:
     build: ./requirements/nginx
     ports:
       - "443:443"
-      - "80:80"
     networks:
       - nw
     depends_on:
@@ -24,7 +23,7 @@ services:
     env_file:
       - .env
     container_name: wordpress
-    build: ./requirements/wp-php
+    build: ./requirements/wordpress
     networks:
       - nw
     depends_on:
@@ -47,11 +46,11 @@ volumes:
     # driver : local
     # driver_opts:
     #   type: none
-    #   device: "/Users/hyopark/b2c/inception/srcs/DB"
+    #   device: "/home/hyopark/data/DB"
     #   o : "bind"
   WP:
     # driver : local
     # driver_opts:
     #   type: none
-    #   device: "/Users/hyopark/b2c/inception/srcs/WP"
+    #   device: "/home/hyopark/data/WP"
     #   o : "bind"

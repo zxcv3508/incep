@@ -9,9 +9,10 @@ WORKDIR /
 COPY conf tmp
 
 COPY tools tools
+RUN service mysql start
 
-RUN sh /tools/init.sh && \ 
-	mv /tmp/my.cnf /etc/mysql/my.cnf;service mysql restart
+# RUN sh /tools/init.sh && \ 
+# 	mv /tmp/my.cnf /etc/mysql/my.cnf;service mysql restart
 
 # RUN service mysql start && \
 # 	mysql < /tools/mysqlset.sql && \
