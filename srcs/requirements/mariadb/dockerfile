@@ -10,6 +10,7 @@ COPY conf tmp
 
 COPY tools tools
 
-RUN service mysql start
+RUN service mysql start &&\
+	service mysql stop
 
 ENTRYPOINT ["sh","/tools/entrypoint.sh"]

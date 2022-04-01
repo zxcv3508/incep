@@ -1,4 +1,3 @@
-
 if [ ! -e /var/lib/mysql/$MYSQL_DB_NAME ]; then
 	chown -R mysql:mysql /var/lib/mysql
 	service mysql start
@@ -9,7 +8,6 @@ if [ ! -e /var/lib/mysql/$MYSQL_DB_NAME ]; then
 	USE $MYSQL_DB_NAME;FLUSH PRIVILEGES;"
 	service mysql stop
 	echo "sql done"
-	mv /tmp/my.cnf /etc/mysql/my.cnf
 fi
-
+cp /tmp/my.cnf /etc/mysql/my.cnf
 exec mysqld_safe
