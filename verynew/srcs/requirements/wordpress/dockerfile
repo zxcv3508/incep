@@ -1,0 +1,26 @@
+FROM debian:buster
+
+RUN apt-get update && apt-get install -y \
+	php7.3-fpm \
+	php7.3-mysql \
+	wget \
+	curl \
+	sendmail
+
+WORKDIR /
+
+COPY conf tmp
+
+COPY tools tools
+
+RUN mkdir -p /var/www/html
+
+RUN mv /tmp/www.conf /etc/php/7.3/fpm/pool.d/www.conf
+
+RUN wget https://wordpress.org/latest.tar.gz && \
+	tar -xvf latest.tar.gz && \
+	mv wordpress/* /var/www/html/ && \
+	rm -rf wordpress && \
+	rm -r latest.tar.gz 
+
+ENTRYPOINT ["sh","/tools/entrypoint.sh"]
