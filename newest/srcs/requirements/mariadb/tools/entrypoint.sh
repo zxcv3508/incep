@@ -13,10 +13,10 @@ if [ ! -e /var/lib/mysql/$MYSQL_DB_NAME ]; then
 	# mysqladmin -e "ALTER USER 'root'@'localhost' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';"
 	# mysqladmin -uroot -p$MYSQL_ROOT_PASSWORD shutdowndo
 
+	echo "sql done"
+fi
 	cp /tmp/my.cnf /etc/mysql/my.cnf
 	service mysql restart
 	service mysql stop
-	echo "sql done"
-fi
 
 exec mysqld_safe
